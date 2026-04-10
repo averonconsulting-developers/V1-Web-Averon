@@ -8,7 +8,7 @@ function closeBanner() {
   const navbar = document.getElementById('navbar');
   if (!banner) return;
   banner.classList.add('hidden');
-  navbar.classList.add('banner-hidden');
+  if (navbar) navbar.classList.add('banner-hidden');
   document.documentElement.style.setProperty('--banner-h', '0px');
   sessionStorage.setItem('bannerClosed', '1');
 }
@@ -17,7 +17,7 @@ function handleLeadMagnet(e) {
   e.preventDefault();
   const input = e.target.querySelector('input[type="email"]');
   const btn   = e.target.querySelector('button');
-  btn.textContent = '✓ Enviado';
+  btn.textContent = 'Enviado';
   btn.style.background = 'rgba(0,0,0,0.5)';
   input.value = '';
   setTimeout(closeBanner, 1200);
@@ -41,9 +41,9 @@ let lastScroll = 0;
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   if (y > 40) {
-    navbar.classList.add('scrolled');
+    if (navbar) navbar.classList.add('scrolled');
   } else {
-    navbar.classList.remove('scrolled');
+    if (navbar) navbar.classList.remove('scrolled');
   }
   lastScroll = y;
 }, { passive: true });
@@ -52,6 +52,7 @@ window.addEventListener('scroll', () => {
 function toggleMenu() {
   const links  = document.getElementById('nav-links');
   const toggle = document.querySelector('.nav-toggle');
+  if (!links || !toggle) return;
   const isOpen = links.classList.toggle('open');
   toggle.classList.toggle('open', isOpen);
   toggle.setAttribute('aria-expanded', isOpen);
@@ -60,6 +61,7 @@ function toggleMenu() {
 function closeMenu() {
   const links  = document.getElementById('nav-links');
   const toggle = document.querySelector('.nav-toggle');
+  if (!links || !toggle) return;
   links.classList.remove('open');
   toggle.classList.remove('open');
   toggle.setAttribute('aria-expanded', 'false');
@@ -77,9 +79,8 @@ document.addEventListener('click', (e) => {
 
 /* ── Scroll reveal (IntersectionObserver) ───── */
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      // Stagger siblings inside grids
       const parent = entry.target.parentElement;
       const siblings = [...parent.querySelectorAll('.reveal:not(.visible)')];
       const idx = siblings.indexOf(entry.target);
@@ -117,59 +118,31 @@ function toggleFaq(btn) {
   answer.classList.toggle('open', !isOpen);
 }
 
-/* ── Hero logo animation ────────────────────── */
-// The CSS handles the N→AV assembly animation on page load.
-// After assembly, add a subtle idle float.
-document.addEventListener('DOMContentLoaded', () => {
-  const shapeA = document.getElementById('hero-shape-a');
-  const shapeV = document.getElementById('hero-shape-v');
-  if (!shapeA || !shapeV) return;
+/* ── Depth parallax (hero index only) ──────── */
+const heroScene = document.getElementById('heroScene');
+if (heroScene) {
+  const layers = heroScene.querySelectorAll('.depth-layer');
+  let currentX = 0, currentY = 0;
+  let targetX = 0, targetY = 0;
 
-  // After the assembly animation finishes, add a slow float
-  shapeA.addEventListener('animationend', () => {
-    shapeA.style.animation = 'none';
-    shapeV.style.animation = 'none';
-    shapeA.style.transform = 'translateX(0)';
-    shapeV.style.transform = 'translateX(0)';
-
-    // Subtle continuous idle animation
-    const svg = document.getElementById('hero-logo-svg');
-    if (svg) {
-      svg.style.animation = 'logo-float 6s ease-in-out infinite';
-    }
-  }, { once: true });
-});
-
-/* ── Active nav link on scroll ──────────────── */
-const sections = document.querySelectorAll('section[id]');
-
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-      });
-    }
+  document.addEventListener('mousemove', e => {
+    targetX = (e.clientX / window.innerWidth - 0.5);
+    targetY = (e.clientY / window.innerHeight - 0.5);
   });
-}, { threshold: 0.4 });
 
-sections.forEach(s => navObserver.observe(s));
-
-/* ── Smooth scroll for anchor links ─────────── */
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const target = document.querySelector(link.getAttribute('href'));
-    if (!target) return;
-    e.preventDefault();
-    const offset = parseInt(getComputedStyle(document.documentElement)
-      .getPropertyValue('--nav-h')) +
-      parseInt(getComputedStyle(document.documentElement)
-      .getPropertyValue('--banner-h'));
-    const top = target.getBoundingClientRect().top + window.scrollY - offset - 8;
-    window.scrollTo({ top, behavior: 'smooth' });
-  });
-});
+  function animateParallax() {
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    layers.forEach(layer => {
+      const depth = parseFloat(layer.dataset.depth);
+      const x = currentX * depth * 60;
+      const y = currentY * depth * 30;
+      layer.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    requestAnimationFrame(animateParallax);
+  }
+  animateParallax();
+}
 
 /* ── Stats counter animation ────────────────── */
 const statObserver = new IntersectionObserver((entries) => {
@@ -194,7 +167,7 @@ const statObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.stat-num[data-target]').forEach(el => statObserver.observe(el));
 
-/* ── CSS keyframe injection (logo float) ─────── */
+/* ── CSS keyframe injection ──────────────────── */
 const style = document.createElement('style');
 style.textContent = `
   @keyframes logo-float {

@@ -1250,3 +1250,185 @@ section { padding: 120px 0; }
   .btn-xl { padding: 16px 28px; }
   .section-cta { padding: 100px 0; }
 }
+
+/* ═══════════════════════════════════════════
+   LOGO IMAGE
+═══════════════════════════════════════════ */
+.nav-logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: brightness(1.1);
+  border-radius: 4px;
+}
+.footer-logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.hero-logo-img {
+  width: 55%;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 48px rgba(59,139,212,0.35));
+  border-radius: 12px;
+  animation: logo-float 6s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════
+   HERO DEPTH / PARALLAX
+═══════════════════════════════════════════ */
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.depth-layer {
+  position: absolute;
+  inset: -20%;
+  will-change: transform;
+  pointer-events: none;
+}
+.hero-orbs { position: absolute; inset: 0; }
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(59,139,212,0.12) 0%, transparent 70%);
+  top: 10%; right: 10%;
+}
+.orb-2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(59,139,212,0.07) 0%, transparent 70%);
+  bottom: 20%; left: 15%;
+}
+.orb-3 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(90,163,227,0.06) 0%, transparent 70%);
+  top: 40%; left: 40%;
+}
+.hero-particles { position: absolute; inset: 0; }
+
+/* ═══════════════════════════════════════════
+   INNER PAGES
+═══════════════════════════════════════════ */
+body.inner-page #navbar {
+  top: 0;
+}
+
+.page-hero {
+  padding: calc(var(--nav-h) + 80px) 0 80px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+body.inner-page .page-hero {
+  padding: calc(var(--nav-h) + 80px) 0 80px;
+}
+.page-hero h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  margin-bottom: 16px;
+}
+.page-hero .eyebrow {
+  margin-bottom: 12px;
+}
+.page-hero p {
+  font-size: 1.1rem;
+  color: var(--text-2);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* Mobile nav fix for inner pages */
+@media (max-width: 768px) {
+  body.inner-page .nav-links {
+    top: var(--nav-h);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BLOG PLACEHOLDER
+═══════════════════════════════════════════ */
+.blog-coming {
+  text-align: center;
+  padding: 80px 0;
+}
+.blog-coming-icon {
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32px;
+}
+.blog-coming-icon span {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.5;
+}
+.blog-coming h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.blog-coming p {
+  font-size: 1rem;
+  color: var(--text-2);
+  max-width: 480px;
+  margin: 0 auto 48px;
+  line-height: 1.75;
+}
+.blog-categories {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.blog-cat {
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--card);
+  letter-spacing: 0.04em;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACTO PAGE
+═══════════════════════════════════════════ */
+.contacto-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.contacto-wrap p {
+  font-size: 1.05rem;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+.contacto-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.contacto-data a, .contacto-data span {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  transition: color 0.2s;
+}
+.contacto-data a:hover { color: var(--accent); }
+.contacto-data .dot { color: var(--text-3); }

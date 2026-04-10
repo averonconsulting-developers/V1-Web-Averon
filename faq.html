@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Averon Consulting — Preguntas frecuentes sobre automatización e IA para pequeñas empresas." />
+  <title>FAQs — Averon Consulting</title>
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="src/css/styles.css" />
+</head>
+<body class="inner-page">
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Averon Consulting">
+        <img src="src/assets/images/logo.jpg" alt="Averon" class="nav-logo-img" />
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">AVERON</span>
+          <span class="nav-logo-sub">CONSULTING</span>
+        </div>
+      </a>
+      <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="como-funciona.html" onclick="closeMenu()">Cómo funciona</a></li>
+        <li><a href="soluciones.html" onclick="closeMenu()">Soluciones</a></li>
+        <li><a href="nosotros.html" onclick="closeMenu()">Nosotros</a></li>
+        <li><a href="faq.html" class="active" onclick="closeMenu()">FAQs</a></li>
+        <li><a href="blog.html" onclick="closeMenu()">Blog</a></li>
+        <li><a href="contacto.html" class="nav-cta" onclick="closeMenu()">Diagnóstico gratuito</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Resolvemos tus dudas</p>
+        <h1>Preguntas frecuentes</h1>
+        <p>Todo lo que necesitas saber antes de hablar con nosotros.</p>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faq">
+      <div class="container">
+        <div class="faq-wrap">
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Cómo sé si necesito vuestros servicios?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>Si trabajas más de 50 horas semanales pero la mitad se va en tareas que deberían ser automáticas, probablemente sí. Si pierdes clientes porque no respondes rápido, o si todo depende de 1-2 personas sin las cuales todo colapsa, definitivamente sí. Hablamos 30 minutos y te decimos si podemos ayudarte.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa si invierto y luego no funciona?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>Primero hacemos un diagnóstico gratuito. Te mostramos exactamente qué vamos a hacer, cuánto va a costar, y qué resultados esperar. Solo empezamos cuando apruebas la propuesta. Si algo no funciona como esperábamos, lo arreglamos. Soporte completo durante la implementación y formación incluida.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Necesito cambiar mi software actual?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>No. Trabajamos con las herramientas que ya tienes. Nuestro enfoque es integrar y automatizar lo que ya usas, no obligarte a cambiar todo. Solo si tu software actual es el problema real, te lo diremos en el diagnóstico.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa si no entiendo nada de tecnología?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>Perfecto. Nuestros clientes típicos tampoco. Por eso incluimos formación completa a tu equipo y documentación paso a paso. No te dejamos solo con algo que no sabes usar. El proceso es colaborativo durante toda la implementación.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Cuánto cuesta? ¿Cuánto tarda?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>Depende completamente de tu situación y lo que necesites. Cada negocio es diferente. Por eso hacemos diagnóstico primero y te damos precio exacto y timeline claro antes de empezar. Garantizamos transparencia total. Sin sorpresas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa después de que entreguéis? ¿Me dejáis solo?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>No. Ofrecemos mantenimiento mensual continuo. Monitorizamos que todo funciona, resolvemos errores, hacemos ajustes pequeños y actualizamos cuando cambian plataformas. Los sistemas necesitan monitorización continua para garantizar que tu operación siga funcionando.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Me tengo que comprometer a largo plazo?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>No. El diagnóstico y la propuesta son gratis y sin compromiso. La implementación tiene un alcance cerrado con precio acordado. El mantenimiento es mensual y puedes cancelar cuando quieras. No hay contratos de permanencia.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué resultados puedo esperar?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>La mayoría de clientes recupera entre 15-25 horas semanales. Algunos ven mejoras de respuesta a clientes del 60-80%. Otros reducen cancelaciones a la mitad. Depende de tu negocio. En la propuesta te damos estimaciones concretas y realistas — no prometemos lo que no podemos cumplir.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa si no podéis ayudarme?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <p>Te lo decimos directamente en el diagnóstico. No trabajamos con todos los clientes — seleccionamos los proyectos donde realmente podemos generar impacto. Si no vemos fit, te lo explicamos y si podemos orientarte hacia otra solución, lo hacemos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Por qué vosotros y no otra consultora, agencia o freelancer?
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-a">
+              <div class="faq-compare">
+                <p><strong>VS Consultoras tradicionales</strong> — Ellas dan PowerPoints de 6 meses. Nosotros damos soluciones funcionando en semanas.</p>
+                <p><strong>VS Agencias de automatización</strong> — Ellas venden paquetes cerrados. Nosotros analizamos TU negocio primero.</p>
+                <p><strong>VS Freelancers técnicos</strong> — Ellos ejecutan sin estrategia. Nosotros combinamos visión de negocio con ejecución técnica.</p>
+                <p><strong>VS Software SaaS genérico</strong> — Ellos venden una solución para todos. Nosotros hacemos traje a medida.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-cta">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="cta-wrap reveal">
+          <p class="eyebrow">¿Tienes más preguntas?</p>
+          <h2>La mejor respuesta es<br /><span class="outline-text">una conversación</span></h2>
+          <p>30 minutos. Sin compromiso. Hablamos de tu negocio y te decimos si podemos ayudarte.</p>
+          <a href="contacto.html" class="btn-primary btn-xl">
+            Solicitar diagnóstico gratuito
+            <span class="btn-note">30 min · sin compromiso · gratis</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">
+        <img src="src/assets/images/logo.jpg" alt="Averon" class="footer-logo-img" />
+        <div>
+          <div class="footer-brand">AVERON CONSULTING</div>
+          <div class="footer-tagline">Automatización · IA · Sistemas</div>
+        </div>
+      </a>
+      <nav class="footer-nav">
+        <a href="como-funciona.html">Cómo funciona</a>
+        <a href="soluciones.html">Soluciones</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="faq.html">FAQs</a>
+        <a href="blog.html">Blog</a>
+        <a href="colaboradores.html">Colaboradores</a>
+      </nav>
+      <div class="footer-contact">
+        <a href="mailto:averonconsult@gmail.com">averonconsult@gmail.com</a>
+        <a href="tel:690751099">690 751 099</a>
+        <span>Barcelona</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Averon Consulting. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script src="src/js/main.js"></script>
+</body>
+</html>
