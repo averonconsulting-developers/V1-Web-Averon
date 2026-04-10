@@ -258,6 +258,27 @@ document.querySelectorAll('.btn-primary').forEach(btn => {
   });
 });
 
+/* ── Cursor particle trail ───────────────────── */
+let lastSpark = 0;
+document.addEventListener('mousemove', e => {
+  const now = Date.now();
+  if (now - lastSpark < 60) return;
+  lastSpark = now;
+  const spark = document.createElement('div');
+  spark.className = 'cursor-spark';
+  spark.style.left = e.clientX + 'px';
+  spark.style.top  = e.clientY + 'px';
+  const size  = 2 + Math.random() * 4;
+  spark.style.width  = size + 'px';
+  spark.style.height = size + 'px';
+  const angle = Math.random() * 360;
+  const dist  = 20 + Math.random() * 35;
+  spark.style.setProperty('--tx', Math.cos(angle * Math.PI / 180) * dist + 'px');
+  spark.style.setProperty('--ty', Math.sin(angle * Math.PI / 180) * dist + 'px');
+  document.body.appendChild(spark);
+  setTimeout(() => spark.remove(), 820);
+});
+
 /* ── Line draw on scroll ────────────────────── */
 const lineObserver = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); lineObserver.unobserve(e.target); } });
