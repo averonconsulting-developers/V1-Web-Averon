@@ -179,3 +179,87 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+/* ── Word split text reveal ────────────────── */
+function initWordSplit() {
+  document.querySelectorAll('h1, h2.split').forEach(el => {
+    el.classList.add('split-words');
+    const html = el.innerHTML;
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html;
+    let wordIndex = 0;
+    function processNode(node) {
+      if (node.nodeType === 3) {
+        const words = node.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        words.forEach(part => {
+          if (part.match(/^\s+$/)) {
+            frag.appendChild(document.createTextNode(part));
+          } else if (part) {
+            const ww = document.createElement('span');
+            ww.className = 'word-wrap';
+            const w = document.createElement('span');
+            w.className = 'word';
+            w.style.transitionDelay = `${wordIndex * 60}ms`;
+            w.textContent = part;
+            ww.appendChild(w);
+            frag.appendChild(ww);
+            wordIndex++;
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1 && node.tagName !== 'SPAN') {
+        Array.from(node.childNodes).forEach(processNode);
+      }
+    }
+    Array.from(wrapper.childNodes).forEach(processNode);
+    el.innerHTML = wrapper.innerHTML;
+  });
+
+  const wordObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('words-visible');
+        wordObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.split-words').forEach(el => wordObserver.observe(el));
+}
+document.addEventListener('DOMContentLoaded', initWordSplit);
+
+/* ── Card 3D tilt on hover ──────────────────── */
+document.querySelectorAll('.problema-card, .ejemplo-card, .team-card, .fase').forEach(card => {
+  card.classList.add('card-tilt');
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    card.style.transform = `perspective(800px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg) translateZ(6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), box-shadow 0.5s cubic-bezier(0.16,1,0.3,1)';
+    setTimeout(() => { card.style.transition = ''; }, 500);
+  });
+});
+
+/* ── Magnetic button effect ─────────────────── */
+document.querySelectorAll('.btn-primary').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+    const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
+    btn.style.transform = `translate(${x}px, ${y}px) translateY(-2px)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+/* ── Line draw on scroll ────────────────────── */
+const lineObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); lineObserver.unobserve(e.target); } });
+}, { threshold: 0.3 });
+document.querySelectorAll('.line-draw').forEach(el => lineObserver.observe(el));
