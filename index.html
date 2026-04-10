@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Averon Consulting — Transformamos tu operativa caótica en sistemas que funcionan solos. Automatización e IA para pequeñas empresas. Diagnóstico gratuito." />
+  <title>Averon Consulting — Global Tech Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/css/styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       HEADER LEAD MAGNET (sticky top)
+  ═══════════════════════════════════════════════ -->
+  <div id="lead-magnet-banner">
+    <div class="banner-inner">
+      <span class="banner-icon">📥</span>
+      <span class="banner-text">Descarga gratis: Checklist "¿Tu empresa está lista para automatización?"</span>
+      <form class="banner-form" onsubmit="handleLeadMagnet(event)">
+        <input type="email" placeholder="Tu email" required aria-label="Email para checklist" />
+        <button type="submit">Descargar</button>
+      </form>
+    </div>
+    <button class="banner-close" onclick="closeBanner()" aria-label="Cerrar">✕</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVEGACIÓN
+  ═══════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Averon Consulting">
+        <svg class="nav-logo-svg" viewBox="0 0 100 105" overflow="visible" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 10,100 L 42,5 L 65,40" fill="none" stroke="#3B8BD4" stroke-width="12" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <path d="M 35,40 L 58,95 L 90,5" fill="none" stroke="#3B8BD4" stroke-width="12" stroke-linecap="butt" stroke-linejoin="miter"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">AVERON</span>
+          <span class="nav-logo-sub">CONSULTING</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#solucion" onclick="closeMenu()">Cómo funciona</a></li>
+        <li><a href="#ejemplos" onclick="closeMenu()">Qué hacemos</a></li>
+        <li><a href="#nosotros" onclick="closeMenu()">Quiénes somos</a></li>
+        <li><a href="#faq" onclick="closeMenu()">FAQs</a></li>
+        <li><a href="blog.html" onclick="closeMenu()">Blog</a></li>
+        <li><a href="#contacto" class="nav-cta" onclick="closeMenu()">Solicitar diagnóstico</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════
+         1. HERO
+    ═══════════════════════════════════════════════ -->
+    <section id="hero">
+      <div class="hero-bg-grid" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-content reveal">
+          <p class="hero-eyebrow">Automatización · IA · Sistemas</p>
+          <h1 class="hero-headline">
+            Deja de perder tiempo<br />en tareas que una máquina<br />
+            <span class="accent">haría mejor</span>
+          </h1>
+          <p class="hero-sub">
+            Transformamos tu operativa caótica en sistemas que funcionan solos.<br />
+            Sin paquetes cerrados. Sin tecnicismos. Sin meses de implementación.<br />
+            Formamos a tu equipo paso a paso. No te dejamos solo.
+          </p>
+          <div class="hero-ctas">
+            <a href="#contacto" class="btn-primary">Solicitar diagnóstico gratuito</a>
+            <a href="#solucion" class="btn-ghost">Ver cómo funciona ↓</a>
+          </div>
+        </div>
+
+        <div class="hero-logo-wrap" aria-hidden="true">
+          <svg id="hero-logo-svg" viewBox="0 0 100 105" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+            <g id="hero-shape-a">
+              <path d="M 10,100 L 42,5 L 65,40" fill="none" stroke="#3B8BD4" stroke-width="10" stroke-linecap="butt" stroke-linejoin="miter"/>
+            </g>
+            <g id="hero-shape-v">
+              <path d="M 35,40 L 58,95 L 90,5" fill="none" stroke="#3B8BD4" stroke-width="10" stroke-linecap="butt" stroke-linejoin="miter"/>
+            </g>
+          </svg>
+          <div class="hero-logo-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         2. AVERON ES PARA TI SI
+    ═══════════════════════════════════════════════ -->
+    <section id="para-ti">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Averon es para ti si<span class="accent">...</span></h2>
+        </div>
+        <div class="para-ti-grid">
+          <div class="para-ti-item reveal">
+            <span class="check">✓</span>
+            <p>Trabajas <strong>60 horas semanales</strong> pero sientes que 30 se van en tareas repetitivas</p>
+          </div>
+          <div class="para-ti-item reveal">
+            <span class="check">✓</span>
+            <p>Pierdes clientes porque tardas <strong>6 horas en responder</strong> consultas</p>
+          </div>
+          <div class="para-ti-item reveal">
+            <span class="check">✓</span>
+            <p>Si tú o tu persona clave falta un día, <strong>el negocio se para</strong></p>
+          </div>
+          <div class="para-ti-item reveal">
+            <span class="check">✓</span>
+            <p>Quieres crecer pero sabes que si duplicas clientes, <strong>duplicas el caos</strong></p>
+          </div>
+        </div>
+        <p class="para-ti-close reveal">Si has asentido con la cabeza al leer esto, hablemos.</p>
+        <div class="center reveal">
+          <a href="#contacto" class="btn-primary">Solicitar diagnóstico gratuito</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         3. PROBLEMA
+    ═══════════════════════════════════════════════ -->
+    <section id="problema" class="section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">El problema</p>
+          <h2>¿Te suena esto?</h2>
+        </div>
+        <div class="cards-grid">
+          <div class="card reveal">
+            <div class="card-num">01</div>
+            <h3>Pierdes clientes sin darte cuenta</h3>
+            <p>Recibes 40+ consultas al día por WhatsApp, Instagram, email y web. Solo respondes a la mitad. El resto se va a la competencia porque tardaste 6 horas en contestar.</p>
+            <p class="card-stat">El 67% de clientes potenciales contacta con la competencia si no recibe respuesta en menos de 4 horas.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card-num">02</div>
+            <h3>Vives apagando fuegos</h3>
+            <p>Trabajas 60 horas semanales pero 30 se van en tareas que "deberían ser automáticas": presupuestos, seguimientos, recordatorios, facturación.</p>
+            <p class="card-stat">El 73% de pequeñas empresas pierde más de 20 horas/semana en tareas administrativas manuales que podrían automatizarse.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card-num">03</div>
+            <h3>Todo depende de ti</h3>
+            <p>Si tú o tu persona clave falta un día, el negocio se para. La información está dispersa en Excel, papel, WhatsApp y la cabeza de 2 personas.</p>
+          </div>
+          <div class="card reveal">
+            <div class="card-num">04</div>
+            <h3>No puedes crecer sin caos</h3>
+            <p>Quieres crecer pero sabes que si duplicas clientes, duplicas el caos. No tienes sistemas. Tienes personas ejecutando tareas manualmente.</p>
+          </div>
+        </div>
+        <div class="problema-transition reveal">
+          <p>El problema no es que no trabajas suficiente.<br />
+          Es que <strong class="accent">no tienes sistemas.</strong></p>
+          <p>Y la mayoría de pequeñas empresas no saben por dónde empezar.<br />
+          Por eso existe Averon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         4. SOLUCIÓN / CÓMO FUNCIONA
+    ═══════════════════════════════════════════════ -->
+    <section id="solucion">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">El proceso</p>
+          <h2>Cómo trabajamos</h2>
+          <p class="section-desc">Cada proyecto es único. No vendemos paquetes cerrados. Este es el proceso que seguimos con todos nuestros clientes:</p>
+        </div>
+
+        <div class="fases-list">
+          <div class="fase reveal">
+            <div class="fase-header">
+              <span class="fase-tag">Fase 0</span>
+              <h3>Primer contacto</h3>
+              <span class="fase-badge gratis">Gratis · 30-60 min</span>
+            </div>
+            <p>Hablamos de tu operativa actual, detectamos si tiene sentido trabajar juntos, y te explicamos cómo podríamos ayudarte. Si no vemos fit, te lo decimos directamente.</p>
+          </div>
+
+          <div class="fase reveal">
+            <div class="fase-header">
+              <span class="fase-tag">Fase 1</span>
+              <h3>Diagnóstico y propuesta</h3>
+              <span class="fase-badge gratis">Gratis · 1-2 semanas</span>
+            </div>
+            <p>Reuniones de diagnóstico profundo: analizamos tu operativa al detalle. Identificamos cuellos de botella, procesos ineficientes, oportunidades. Te damos 2-3 opciones con alcance, precio, timeline y ROI estimado.</p>
+            <p class="fase-note">Solo empezamos cuando apruebas la propuesta.</p>
+          </div>
+
+          <div class="fase reveal">
+            <div class="fase-header">
+              <span class="fase-tag">Fase 2</span>
+              <h3>Implementación</h3>
+              <span class="fase-badge">2-4 semanas</span>
+            </div>
+            <p>Diseñamos la solución técnica específica para tu negocio. Configuramos e integramos herramientas, formamos a tu equipo, y documentamos todo para que cualquiera pueda ejecutar los procesos.</p>
+            <ul class="fase-list">
+              <li>Automatización de procesos repetitivos</li>
+              <li>Integraciones entre herramientas</li>
+              <li>Flujos automatizados y chatbots con IA</li>
+              <li>Formación completa a tu equipo</li>
+            </ul>
+            <p class="fase-result">Resultado: recuperas 15-25 horas semanales.</p>
+          </div>
+
+          <div class="fase reveal">
+            <div class="fase-header">
+              <span class="fase-tag">Fase 3</span>
+              <h3>Proyectos avanzados</h3>
+              <span class="fase-badge opcional">Opcional · 1-3 meses</span>
+            </div>
+            <p>Para quienes quieren ir más allá: integraciones con ERP/CRM enterprise, desarrollos custom, migraciones masivas. La mayoría de clientes no necesita esto.</p>
+          </div>
+
+          <div class="fase reveal">
+            <div class="fase-header">
+              <span class="fase-tag">Fase 4</span>
+              <h3>Mantenimiento continuo</h3>
+              <span class="fase-badge">Mensual</span>
+            </div>
+            <p>Monitorizamos que todo funciona, resolvemos errores, hacemos ajustes pequeños y actualizamos cuando cambian las plataformas. Incluye 2-4 horas de trabajo al mes.</p>
+          </div>
+        </div>
+
+        <div class="principios reveal">
+          <h3>Principios que seguimos siempre</h3>
+          <div class="principios-grid">
+            <div class="principio">
+              <span class="principio-icon">🎯</span>
+              <strong>Diagnóstico primero</strong>
+              <p>No vendemos sin entender tu negocio.</p>
+            </div>
+            <div class="principio">
+              <span class="principio-icon">⚡</span>
+              <strong>Resultados en semanas</strong>
+              <p>Sin procesos largos. Sin burocracia.</p>
+            </div>
+            <div class="principio">
+              <span class="principio-icon">🔍</span>
+              <strong>Transparencia total</strong>
+              <p>Sabes qué pagas, qué recibes, cuánto tarda.</p>
+            </div>
+            <div class="principio">
+              <span class="principio-icon">📚</span>
+              <strong>Formación incluida</strong>
+              <p>No te dejamos solo con algo que no sabes usar.</p>
+            </div>
+            <div class="principio">
+              <span class="principio-icon">🤝</span>
+              <strong>Trabajo colaborativo</strong>
+              <p>Tu feedback importa. No imponemos soluciones.</p>
+            </div>
+            <div class="principio">
+              <span class="principio-icon">💬</span>
+              <strong>Soporte continuo</strong>
+              <p>Respondemos rápido. No desaparecemos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         5. EJEMPLOS DE SOLUCIONES
+    ═══════════════════════════════════════════════ -->
+    <section id="ejemplos" class="section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Casos de uso</p>
+          <h2>Qué podemos hacer por ti</h2>
+          <p class="section-desc">Cada proyecto es único y 100% a medida. Estos son algunos ejemplos. Tu negocio es diferente, tu solución también lo será.</p>
+        </div>
+
+        <div class="ejemplos-grid">
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">01</div>
+            <h3>Gestión automática de consultas</h3>
+            <p>Sistema que captura todas las consultas de WhatsApp, Instagram, email y web. Las clasifica automáticamente y responde con IA las preguntas frecuentes.</p>
+            <div class="ejemplo-results">
+              <span>0 consultas sin responder</span>
+              <span>Respuesta &lt;2 horas</span>
+              <span>+10-20 clientes/mes</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">02</div>
+            <h3>Recordatorios automáticos</h3>
+            <p>Sistema de recordatorios por WhatsApp y SMS. Si alguien cancela, ofrece automáticamente el hueco a la lista de espera.</p>
+            <div class="ejemplo-results">
+              <span>Cancelaciones 25% → 8%</span>
+              <span>Agenda al 95%+</span>
+              <span>+15-20% facturación</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">03</div>
+            <h3>CRM centralizado</h3>
+            <p>CRM simple y a medida que centraliza toda la información de clientes en un solo lugar. Accesible para todo el equipo.</p>
+            <div class="ejemplo-results">
+              <span>0 tiempo buscando datos</span>
+              <span>Equipo completo con acceso</span>
+              <span>+20-30% capacidad</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">04</div>
+            <h3>Generación automática de presupuestos</h3>
+            <p>Introduces datos básicos y el sistema genera el PDF profesional en 2 minutos con precios actualizados y cálculo automático.</p>
+            <div class="ejemplo-results">
+              <span>30-60 min → 2-3 min</span>
+              <span>0 errores de cálculo</span>
+              <span>Recuperas 15-20h/mes</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">05</div>
+            <h3>Programas de fidelización automáticos</h3>
+            <p>Sistema que detecta cuando un cliente no vuelve y envía comunicación personalizada. Programas de puntos gestionados automáticamente.</p>
+            <div class="ejemplo-results">
+              <span>+20-30% recurrencia</span>
+              <span>Clientes vuelven 1.5x más</span>
+              <span>+15% ticket promedio</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">06</div>
+            <h3>Automatización de marketing</h3>
+            <p>Segmentación automática de clientes y envío de comunicaciones personalizadas. Campañas por cumpleaños, aniversarios, renovaciones.</p>
+            <div class="ejemplo-results">
+              <span>2-4 campañas/mes</span>
+              <span>Apertura 40-60%</span>
+              <span>+10-15% ventas</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">07</div>
+            <h3>Integración de herramientas</h3>
+            <p>Conectamos todas tus herramientas para que hablen entre sí. Dato en un sitio = dato en todos. Sin duplicación de trabajo.</p>
+            <div class="ejemplo-results">
+              <span>80% menos duplicación</span>
+              <span>Recuperas 5-10h/semana</span>
+              <span>0 errores sincronización</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">08</div>
+            <h3>Digitalización de procesos internos</h3>
+            <p>Flujos de aprobación, gestión documental, asignación automática de tareas. Todo documentado y accesible para el equipo completo.</p>
+            <div class="ejemplo-results">
+              <span>Procesos 50-70% más rápidos</span>
+              <span>0 dependencia de personas</span>
+              <span>Onboarding en días</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">09</div>
+            <h3>Chatbots inteligentes con IA</h3>
+            <p>Chatbot con IA (Claude, ChatGPT) que responde 24/7 con lenguaje natural. Agenda citas, envía presupuestos básicos, deriva a humano si no sabe.</p>
+            <div class="ejemplo-results">
+              <span>60-80% sin intervención humana</span>
+              <span>Disponible 24/7</span>
+              <span>Equipo en consultas complejas</span>
+            </div>
+          </div>
+
+          <div class="ejemplo-card reveal">
+            <div class="ejemplo-num">10</div>
+            <h3>Automatización administrativa</h3>
+            <p>Facturas generadas automáticamente al completar un servicio. Documentos desde plantillas. Reportes actualizados automáticamente cada semana.</p>
+            <div class="ejemplo-results">
+              <span>Recuperas 10-15h/semana</span>
+              <span>0 errores en documentos</span>
+              <span>Reportes siempre al día</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ejemplos-close reveal">
+          <p>¿Te identificas con alguno? No estás solo.<br />
+          Estos son solo 10 ejemplos. <strong>Tu negocio tiene sus propios desafíos únicos.</strong><br />
+          Por eso hacemos siempre diagnóstico gratuito de TU operativa específica.</p>
+          <a href="#contacto" class="btn-primary">Hablemos de tu caso</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         6. QUIÉNES SOMOS
+    ═══════════════════════════════════════════════ -->
+    <section id="nosotros">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">El equipo</p>
+          <h2>Quiénes somos</h2>
+        </div>
+
+        <div class="nosotros-intro reveal">
+          <p>Somos emprendedores jóvenes que hemos nacido para revolucionar cómo se gestionan las empresas.</p>
+          <p>Averon nació de una experiencia personal: en nuestra propia empresa de fabricación, teníamos un cuello de botella grave en la operativa diaria. Perdíamos horas cada día en tareas repetitivas.</p>
+          <p>Hoy, en esa empresa solo supervisamos que la operativa siga funcionando. Lo que antes nos consumía 20 horas semanales, ahora funciona solo.</p>
+          <p class="nosotros-highlight"><strong>Y pensamos: si esto funciona para nosotros, funciona para otros.</strong></p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-photo">
+              <div class="team-photo-placeholder">JAN</div>
+            </div>
+            <div class="team-info">
+              <h3>Jan</h3>
+              <p class="team-role">Automatización e IA</p>
+              <p>2 años aplicando inteligencia artificial a procesos empresariales reales. Perfil de gestión comercial y marketing. Máster en Chief AI Strategist — Nuclio Digital School.</p>
+              <p class="team-quote">"Veo el impacto en negocio antes de tocar la tecnología."</p>
+              <p>En Averon, diseña e implementa las soluciones técnicas.</p>
+            </div>
+          </div>
+
+          <div class="team-card reveal">
+            <div class="team-photo">
+              <div class="team-photo-placeholder">ROBERT</div>
+            </div>
+            <div class="team-info">
+              <h3>Robert</h3>
+              <p class="team-role">Operaciones y proyectos</p>
+              <p>3 años gestionando operaciones empresariales. Enfocado en quien hace qué, cuándo, cómo, y cómo hacerlo más rápido sin perder calidad.</p>
+              <p class="team-quote">"El mejor sistema no es el más avanzado técnicamente, es el que la gente realmente usa."</p>
+              <p>En Averon, estructura los proyectos y lidera la relación con clientes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="por-que-grid reveal">
+          <h3 class="center">Por qué trabajar con nosotros</h3>
+          <div class="por-que-items">
+            <div class="por-que-item">
+              <span class="por-que-arrow">→</span>
+              <div>
+                <strong>Trabajas directamente con quien diseña e implementa</strong>
+                <p>No hay capas de comerciales. Hablas con Jan y Robert.</p>
+              </div>
+            </div>
+            <div class="por-que-item">
+              <span class="por-que-arrow">→</span>
+              <div>
+                <strong>Ya lo hemos hecho</strong>
+                <p>No vendemos teoría. Automatizamos nuestra propia empresa primero.</p>
+              </div>
+            </div>
+            <div class="por-que-item">
+              <span class="por-que-arrow">→</span>
+              <div>
+                <strong>Velocidad real</strong>
+                <p>Sin burocracia interna. Tomamos decisiones rápido, implementamos rápido.</p>
+              </div>
+            </div>
+            <div class="por-que-item">
+              <span class="por-que-arrow">→</span>
+              <div>
+                <strong>Honestidad radical</strong>
+                <p>Si no podemos ayudarte, te lo decimos directamente.</p>
+              </div>
+            </div>
+          </div>
+          <div class="center" style="margin-top: 2.5rem">
+            <a href="#contacto" class="btn-primary">Conócenos</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         7. FAQs
+    ═══════════════════════════════════════════════ -->
+    <section id="faq" class="section-alt">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Resolvemos tus dudas</p>
+          <h2>Preguntas frecuentes</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Cómo sé si necesito vuestros servicios?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Si trabajas más de 50 horas semanales pero la mitad se va en tareas que "deberían ser automáticas", probablemente sí. Si pierdes clientes porque no respondes rápido, o si todo depende de 1-2 personas sin las cuales todo colapsa, definitivamente sí. Hablamos 30 minutos (gratis) y te decimos si podemos ayudarte o no. Sin vueltas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa si invierto y luego no funciona?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Primero hacemos un diagnóstico gratuito. Te mostramos exactamente qué vamos a hacer, cuánto va a costar, y qué resultados esperar. Solo empezamos a implementar cuando apruebas la propuesta. Si algo no funciona como esperábamos, lo arreglamos. Incluimos soporte durante la implementación y formación completa a tu equipo.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Necesito cambiar mi software actual?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No. Trabajamos CON las herramientas que ya tienes. Nuestro enfoque es integrar y automatizar lo que ya usas (tu agenda, software de gestión, WhatsApp Business, email, etc.), no obligarte a cambiar todo. Solo si tu software actual es el problema real, te lo diremos en el diagnóstico.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa si no entiendo nada de tecnología?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Perfecto. Nuestros clientes típicos tampoco. Por eso incluimos formación completa a tu equipo y documentación paso a paso. No te dejamos solo con algo que no sabes usar. Además, trabajamos contigo durante la implementación de forma colaborativa.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Cuánto cuesta? ¿Cuánto tarda?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Depende completamente de tu situación y lo que necesites. Por eso hacemos diagnóstico primero: analizamos tu operativa y te damos precio exacto y timeline claro en la propuesta. Garantizamos transparencia total: sabrás qué vas a pagar, qué vas a recibir, y cuánto tiempo llevará ANTES de empezar. Sin sorpresas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa después de que entreguéis? ¿Me dejáis solo?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No. Ofrecemos mantenimiento mensual continuo. Monitorizamos que todo funciona, resolvemos errores, hacemos ajustes pequeños, respondemos consultas y actualizamos cuando cambian plataformas. Los sistemas necesitan monitorización: es garantizar que tu operación siga funcionando.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Me tengo que comprometer a largo plazo?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>No. Cada proyecto tiene un alcance definido y un timeline claro. Una vez entregado, decides si quieres continuar con más mejoras o no. El mantenimiento mensual también puedes cancelarlo cuando quieras.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué resultados puedo esperar?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>El objetivo siempre es el mismo: recuperar tiempo en tareas manuales, dejar de perder clientes por mala gestión, reducir dependencia de personas específicas, y poder crecer sin que todo colapse. En otras palabras: poder irte de vacaciones sin que tu negocio se pare. Te damos estimaciones concretas en la propuesta, basadas en tu operativa real.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Qué pasa si no podéis ayudarme?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Te lo decimos directamente. No vamos a cerrar una venta solo por ganar dinero. Si después del diagnóstico vemos que no podemos aportarte valor real, te lo diremos con transparencia. Preferimos no trabajar juntos que hacer un proyecto que no tiene sentido para ti.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+              ¿Por qué vosotros y no otra consultora, agencia o freelancer?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-comparativa">
+                <div><strong>VS Consultoras tradicionales:</strong> Ellas dan PowerPoints de 6 meses. Nosotros damos soluciones funcionando en semanas.</div>
+                <div><strong>VS Agencias de automatización:</strong> Ellas venden paquetes cerrados. Nosotros analizamos TU negocio primero.</div>
+                <div><strong>VS Freelancers técnicos:</strong> Ellos ejecutan sin estrategia. Nosotros combinamos visión de negocio con ejecución técnica.</div>
+                <div><strong>VS Software SaaS genérico:</strong> Ellos venden una solución para todos. Nosotros hacemos traje a medida.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         8. COLABORADORES
+    ═══════════════════════════════════════════════ -->
+    <section id="colaboradores">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Red de partners</p>
+          <h2>Colaboradores</h2>
+          <p class="section-desc">Creemos en trabajar con los mejores. Por eso colaboramos con profesionales que comparten nuestros valores.</p>
+        </div>
+
+        <div class="colabs-grid">
+          <div class="colab-card reveal">
+            <div class="colab-logo">Windsor Group</div>
+            <p class="colab-area">Desarrollo Web</p>
+            <p>Para clientes que necesitan diseño y desarrollo web profesional. Si tu proyecto requiere una web nueva o rediseño, podemos coordinarlo todo.</p>
+          </div>
+        </div>
+
+        <div class="colab-cta reveal">
+          <h3>¿Quieres colaborar con nosotros?</h3>
+          <p>Estamos abiertos a crear comunidad con agencias de marketing, desarrolladores, consultores y otros profesionales. Buscamos colaboradores profesionales, transparentes y comprometidos con resultados reales.</p>
+          <a href="#contacto" class="btn-outline">Quiero colaborar con Averon</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         9. CTA FINAL / CONTACTO
+    ═══════════════════════════════════════════════ -->
+    <section id="contacto" class="section-cta">
+      <div class="container">
+        <div class="cta-final reveal">
+          <h2>¿Listo para recuperar<br /><span class="accent">20 horas semanales</span>?</h2>
+          <p>No vendemos paquetes cerrados. No prometemos soluciones mágicas. No te hablamos con tecnicismos.</p>
+          <p>Hacemos una cosa: diagnosticamos tu operativa, detectamos qué se puede automatizar, y lo implementamos en semanas.</p>
+          <p>Lo hicimos en nuestra propia empresa primero. Recuperamos 20 horas semanales. Ahora funciona solo.</p>
+
+          <a href="mailto:averonconsult@gmail.com?subject=Solicito diagnóstico gratuito" class="btn-primary btn-large">
+            Solicitar diagnóstico gratuito
+            <span class="btn-sub">30 min · sin compromiso</span>
+          </a>
+
+          <div class="contacto-info">
+            <a href="mailto:averonconsult@gmail.com" class="contacto-link">averonconsult@gmail.com</a>
+            <span class="contacto-sep">·</span>
+            <a href="tel:690751099" class="contacto-link">690 751 099</a>
+            <span class="contacto-sep">·</span>
+            <span>Barcelona y área metropolitana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer id="footer">
+    <div class="container footer-inner">
+      <a href="#hero" class="footer-logo" aria-label="Averon Consulting">
+        <svg class="footer-logo-svg" viewBox="0 0 100 105" overflow="visible" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 10,100 L 42,5 L 65,40" fill="none" stroke="#3B8BD4" stroke-width="12" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <path d="M 35,40 L 58,95 L 90,5" fill="none" stroke="#3B8BD4" stroke-width="12" stroke-linecap="butt" stroke-linejoin="miter"/>
+        </svg>
+        <div>
+          <div class="footer-brand">AVERON CONSULTING</div>
+          <div class="footer-tagline">Global Tech Solutions</div>
+        </div>
+      </a>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#solucion">Cómo funciona</a>
+        <a href="#ejemplos">Qué hacemos</a>
+        <a href="#nosotros">Quiénes somos</a>
+        <a href="#faq">FAQs</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+
+      <div class="footer-contact">
+        <a href="mailto:averonconsult@gmail.com">averonconsult@gmail.com</a>
+        <a href="tel:690751099">690 751 099</a>
+        <span>Barcelona</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Averon Consulting. Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script src="src/js/main.js"></script>
+</body>
+</html>
