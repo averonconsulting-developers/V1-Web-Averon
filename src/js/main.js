@@ -105,7 +105,7 @@ function toggleFaq(btn) {
   const isOpen  = btn.getAttribute('aria-expanded') === 'true';
 
   // Close all others
-  document.querySelectorAll('.faq-question[aria-expanded="true"]').forEach(other => {
+  document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(other => {
     if (other !== btn) {
       other.setAttribute('aria-expanded', 'false');
       other.nextElementSibling.classList.remove('open');
@@ -170,6 +170,29 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
+
+/* ── Stats counter animation ────────────────── */
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target, 10);
+    if (isNaN(target)) return;
+    const duration = 1600;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    statObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-num[data-target]').forEach(el => statObserver.observe(el));
 
 /* ── CSS keyframe injection (logo float) ─────── */
 const style = document.createElement('style');
