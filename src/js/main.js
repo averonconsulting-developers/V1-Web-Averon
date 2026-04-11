@@ -284,3 +284,46 @@ const lineObserver = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); lineObserver.unobserve(e.target); } });
 }, { threshold: 0.3 });
 document.querySelectorAll('.line-draw').forEach(el => lineObserver.observe(el));
+
+/* ── Section cinematic entrance ──────────────── */
+const sectionObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      sectionObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('section').forEach(s => {
+  // no aplicar al hero
+  if (s.id === 'hero' || s.classList.contains('page-hero')) return;
+  s.classList.add('reveal-section');
+  sectionObserver.observe(s);
+});
+
+/* ── Scroll parallax en imágenes ─────────────── */
+function initScrollParallax() {
+  const els = document.querySelectorAll('[data-parallax]');
+  if (!els.length) return;
+
+  let ticking = false;
+
+  function update() {
+    els.forEach(el => {
+      const rect = el.parentElement.getBoundingClientRect();
+      if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+      const speed  = parseFloat(el.dataset.parallax || 0.15);
+      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      el.style.transform = `scale(1.12) translateY(${center * speed}px)`;
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+
+  update();
+}
+initScrollParallax();
