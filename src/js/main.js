@@ -328,7 +328,7 @@ function initScrollParallax() {
 }
 initScrollParallax();
 
-/* ── Tierra 3D Globe.gl (lerp smooth) ───────── */
+/* ── Tierra 3D Globe.gl — sticky full-page zoom ─ */
 (function initGlobe() {
   const container = document.getElementById('globe-container');
   if (!container || typeof Globe === 'undefined') return;
@@ -343,35 +343,37 @@ initScrollParallax();
     .atmosphereColor('#3B8BD4')
     .atmosphereAltitude(0.18);
 
-  globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: 2.4 }, 0);
+  /* Vista inicial: España desde lejos */
+  globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: 2.5 }, 0);
 
   globe.controls().autoRotate    = true;
-  globe.controls().autoRotateSpeed = 0.35;
+  globe.controls().autoRotateSpeed = 0.4;
   globe.controls().enableZoom    = false;
   globe.controls().enablePan     = false;
   globe.controls().enableRotate  = false;
 
-  let targetAlt     = 2.4, currentAlt     = 2.4;
-  let targetOpacity = 1,   currentOpacity = 1;
+  const ALT_START = 2.5;  /* altitud al principio de la página */
+  const ALT_END   = 0.35; /* altitud al final de la página (muy cerca de España) */
+
+  let targetAlt  = ALT_START;
+  let currentAlt = ALT_START;
+
+  function getScrollProgress() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    return maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
+  }
 
   window.addEventListener('scroll', () => {
-    const hero = document.getElementById('hero');
-    if (!hero) return;
-    const progress  = Math.min(window.scrollY / hero.offsetHeight, 1);
-    targetAlt = Math.max(2.4 - progress * 1.9, 0.5);
-
-    const fadeStart = hero.offsetHeight * 0.65;
-    const fadeRange = hero.offsetHeight * 0.45;
-    targetOpacity = 1 - Math.min(Math.max((window.scrollY - fadeStart) / fadeRange, 0), 1);
-
-    globe.controls().autoRotate = progress < 0.05;
+    const p = getScrollProgress();
+    /* Interpolación cuadrática: aceleración suave al inicio, más zoom al final */
+    targetAlt = ALT_START - (ALT_START - ALT_END) * (p * p * (3 - 2 * p)); /* smoothstep */
+    /* Desactivar auto-rotate en cuanto empieza el scroll */
+    globe.controls().autoRotate = p < 0.02;
   }, { passive: true });
 
   function animate() {
-    currentAlt     += (targetAlt     - currentAlt)     * 0.06;
-    currentOpacity += (targetOpacity - currentOpacity) * 0.08;
+    currentAlt += (targetAlt - currentAlt) * 0.05;
     globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: currentAlt }, 0);
-    container.style.opacity = currentOpacity;
     requestAnimationFrame(animate);
   }
   animate();
