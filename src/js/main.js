@@ -327,3 +327,58 @@ function initScrollParallax() {
   update();
 }
 initScrollParallax();
+
+/* ── Tierra 3D Globe.gl ──────────────────────── */
+(function initGlobe() {
+  const container = document.getElementById('globe-container');
+  if (!container || typeof Globe === 'undefined') return;
+
+  const w = container.offsetWidth  || window.innerWidth;
+  const h = container.offsetHeight || window.innerHeight;
+
+  const globe = Globe({ animateIn: false })(container)
+    .width(w)
+    .height(h)
+    .backgroundColor('rgba(0,0,0,0)')
+    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+    .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
+    .showAtmosphere(true)
+    .atmosphereColor('#3B8BD4')
+    .atmosphereAltitude(0.18);
+
+  /* Arrancar mirando Europa centrada en España */
+  globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: 2.4 }, 0);
+
+  /* Rotación automática suave */
+  let autoRotate = true;
+  globe.controls().autoRotate = true;
+  globe.controls().autoRotateSpeed = 0.35;
+  globe.controls().enableZoom = false;
+  globe.controls().enablePan  = false;
+  globe.controls().enableRotate = false;
+
+  /* Zoom hacia España al hacer scroll */
+  let lastAlt = 2.4;
+  window.addEventListener('scroll', () => {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    const progress = Math.min(window.scrollY / hero.offsetHeight, 1);
+    const targetAlt = 2.4 - progress * 1.9;
+    const alt = Math.max(targetAlt, 0.5);
+    if (Math.abs(alt - lastAlt) > 0.01) {
+      globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: alt }, 80);
+      lastAlt = alt;
+      /* Pausar auto-rotate cuando el usuario interactúa */
+      if (progress > 0.05) {
+        globe.controls().autoRotate = false;
+      } else {
+        globe.controls().autoRotate = true;
+      }
+    }
+  }, { passive: true });
+
+  /* Resize */
+  window.addEventListener('resize', () => {
+    globe.width(container.offsetWidth).height(container.offsetHeight);
+  });
+})();

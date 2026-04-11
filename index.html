@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="src/css/styles.css" />
+  <script src="https://unpkg.com/globe.gl@2"></script>
 </head>
 <body>
 
@@ -63,28 +64,9 @@
     ══════════════════════════════════ -->
     <section id="hero">
 
-      <div class="hero-bg-full" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80&fit=crop" alt="" data-parallax="0.1" />
-      </div>
-
-      <!-- Depth parallax scene -->
-      <div class="hero-scene" id="heroScene">
-        <div class="depth-layer" data-depth="0.1">
-          <div class="hero-grid-bg"></div>
-        </div>
-        <div class="depth-layer" data-depth="0.3">
-          <div class="hero-orbs">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-            <div class="orb orb-3"></div>
-          </div>
-        </div>
-        <div class="depth-layer" data-depth="0.6">
-          <div class="hero-particles"></div>
-        </div>
-      </div>
-
-      <div class="hero-glow" aria-hidden="true"></div>
+      <!-- Tierra 3D WebGL -->
+      <div id="globe-container" aria-hidden="true"></div>
+      <div class="globe-fade-bottom" aria-hidden="true"></div>
 
       <div class="container hero-inner">
         <div class="hero-content reveal">

@@ -1570,7 +1570,31 @@ body.inner-page .page-hero {
 }
 
 /* ═══════════════════════════════════════════
-   FULL-SCREEN HERO IMAGE
+   GLOBE 3D
+═══════════════════════════════════════════ */
+#globe-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+#globe-container canvas {
+  display: block;
+}
+.globe-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  z-index: 1;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   FULL-SCREEN HERO IMAGE (páginas interiores)
 ═══════════════════════════════════════════ */
 .hero-bg-full {
   position: absolute;
