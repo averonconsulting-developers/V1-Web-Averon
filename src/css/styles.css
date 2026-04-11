@@ -31,7 +31,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
-  background: var(--bg);
+  background: #060606; /* fallback, el globo fixed cubre el fondo */
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
@@ -302,11 +302,12 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -0.02em; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ═══════════════════════════════════════════
-   SECTIONS — base
+   SECTIONS — base (transparentes para ver el globo)
 ═══════════════════════════════════════════ */
-section { padding: 120px 0; }
+section { padding: 120px 0; background: transparent; }
 #hero { padding: 0; }
-.section-alt { background: var(--bg-alt); }
+/* Secciones alternas: overlay semi-transparente muy sutil para dar ritmo */
+.section-alt { background: rgba(10,10,16,0.55); }
 
 /* ═══════════════════════════════════════════
    HERO

@@ -328,7 +328,7 @@ function initScrollParallax() {
 }
 initScrollParallax();
 
-/* ── Tierra 3D Globe.gl — sticky full-page zoom ─ */
+/* ── Tierra 3D Globe.gl — sticky, siempre girando, interacción ratón ─ */
 (function initGlobe() {
   const container = document.getElementById('globe-container');
   if (!container || typeof Globe === 'undefined') return;
@@ -343,37 +343,56 @@ initScrollParallax();
     .atmosphereColor('#3B8BD4')
     .atmosphereAltitude(0.18);
 
-  /* Vista inicial: España desde lejos */
   globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: 2.5 }, 0);
 
-  globe.controls().autoRotate    = true;
+  /* Siempre girando — la velocidad baja al acercarse */
+  globe.controls().autoRotate      = true;
   globe.controls().autoRotateSpeed = 0.4;
-  globe.controls().enableZoom    = false;
-  globe.controls().enablePan     = false;
-  globe.controls().enableRotate  = false;
+  globe.controls().enableZoom      = false;
+  globe.controls().enablePan       = false;
+  globe.controls().enableRotate    = false;
 
-  const ALT_START = 2.5;  /* altitud al principio de la página */
-  const ALT_END   = 0.35; /* altitud al final de la página (muy cerca de España) */
+  const ALT_START = 2.5;
+  const ALT_END   = 0.35;
+  const LAT_BASE  = 40.4;
+  const LNG_BASE  = -3.7;
 
-  let targetAlt  = ALT_START;
-  let currentAlt = ALT_START;
+  let targetAlt  = ALT_START, currentAlt  = ALT_START;
+  /* Desplazamiento por ratón (lat/lng offset) */
+  let mouseLat = 0, mouseLng = 0;
+  let targetMouseLat = 0, targetMouseLng = 0;
 
   function getScrollProgress() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    return maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    return max > 0 ? Math.min(window.scrollY / max, 1) : 0;
   }
 
   window.addEventListener('scroll', () => {
     const p = getScrollProgress();
-    /* Interpolación cuadrática: aceleración suave al inicio, más zoom al final */
-    targetAlt = ALT_START - (ALT_START - ALT_END) * (p * p * (3 - 2 * p)); /* smoothstep */
-    /* Desactivar auto-rotate en cuanto empieza el scroll */
-    globe.controls().autoRotate = p < 0.02;
+    /* smoothstep: suave al inicio y al final */
+    targetAlt = ALT_START - (ALT_START - ALT_END) * (p * p * (3 - 2 * p));
+    /* La rotación se hace más lenta conforme se acerca */
+    globe.controls().autoRotateSpeed = 0.4 - p * 0.32;
+  }, { passive: true });
+
+  /* Interacción ratón — desplazamiento sutil de la vista */
+  window.addEventListener('mousemove', (e) => {
+    const nx = (e.clientX / window.innerWidth  - 0.5);  /* -0.5 a 0.5 */
+    const ny = (e.clientY / window.innerHeight - 0.5);
+    const influence = Math.max(0.3, 1 - getScrollProgress() * 0.7);
+    targetMouseLat = -ny * 6 * influence;  /* ±3° de latitud */
+    targetMouseLng =  nx * 8 * influence;  /* ±4° de longitud */
   }, { passive: true });
 
   function animate() {
-    currentAlt += (targetAlt - currentAlt) * 0.05;
-    globe.pointOfView({ lat: 40.4, lng: -3.7, altitude: currentAlt }, 0);
+    currentAlt   += (targetAlt   - currentAlt)   * 0.05;
+    mouseLat     += (targetMouseLat - mouseLat)   * 0.06;
+    mouseLng     += (targetMouseLng - mouseLng)   * 0.06;
+    globe.pointOfView({
+      lat:      LAT_BASE + mouseLat,
+      lng:      LNG_BASE + mouseLng,
+      altitude: currentAlt
+    }, 0);
     requestAnimationFrame(animate);
   }
   animate();
