@@ -329,10 +329,32 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); letter-spacing: -0.02em; }
 /* ═══════════════════════════════════════════
    SECTIONS — base (transparentes para ver el globo)
 ═══════════════════════════════════════════ */
-section { padding: 120px 0; background: transparent; }
+section { padding: 140px 0; background: transparent; }
 #hero { padding: 0; }
-/* Secciones alternas: overlay semi-transparente muy sutil para dar ritmo */
-.section-alt { background: rgba(10,10,16,0.55); }
+
+/* Secciones alternas con difuminado en los bordes */
+.section-alt {
+  background: rgba(10,10,16,0.55);
+  position: relative;
+}
+.section-alt::before,
+.section-alt::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 1;
+}
+.section-alt::before {
+  top: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(10,10,16,0.55) 100%);
+}
+.section-alt::after {
+  bottom: 0;
+  background: linear-gradient(to top, transparent 0%, rgba(10,10,16,0.55) 100%);
+}
+.section-alt > * { position: relative; z-index: 2; }
 
 /* ═══════════════════════════════════════════
    HERO
@@ -501,15 +523,15 @@ section { padding: 120px 0; background: transparent; }
 .para-ti-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  margin-bottom: 60px;
+  gap: 48px;
+  margin-bottom: 80px;
 }
 
 .para-ti-item {
   display: flex;
-  gap: 24px;
+  gap: 28px;
   align-items: flex-start;
-  padding: 48px;
+  padding: 52px;
   background: rgba(255,255,255,0.02);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -524,17 +546,17 @@ section { padding: 120px 0; background: transparent; }
 
 .para-ti-check {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 500;
   color: var(--accent);
-  opacity: 0.7;
+  opacity: 0.85;
   flex-shrink: 0;
   line-height: 1.4;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
 }
 
 .para-ti-item p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: rgba(255,255,255,0.65);
   line-height: 1.7;
 }
@@ -559,8 +581,8 @@ section { padding: 120px 0; background: transparent; }
 .problema-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  margin-bottom: 64px;
+  gap: 48px;
+  margin-bottom: 80px;
 }
 
 .problema-card {
@@ -585,14 +607,14 @@ section { padding: 120px 0; background: transparent; }
 
 .problema-number {
   font-family: var(--font-display);
-  font-size: 140px;
+  font-size: 120px;
   font-weight: 600;
-  color: var(--text);
-  opacity: 0.02;
+  color: var(--accent);
+  opacity: 0.06;
   line-height: 1;
   position: absolute;
-  top: -20px;
-  right: 24px;
+  top: -16px;
+  right: 28px;
   pointer-events: none;
   user-select: none;
   letter-spacing: -0.04em;
@@ -661,7 +683,7 @@ section { padding: 120px 0; background: transparent; }
 .fases-wrap {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 32px;
   margin-bottom: 80px;
   position: relative;
 }
@@ -678,11 +700,11 @@ section { padding: 120px 0; background: transparent; }
   display: flex;
   gap: 32px;
   background: rgba(255,255,255,0.02);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 16px;
-  padding: 32px 36px 32px 68px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 40px 44px 40px 80px;
   position: relative;
   transition: all 0.4s var(--ease-std);
 }
@@ -713,11 +735,12 @@ section { padding: 120px 0; background: transparent; }
   flex-wrap: wrap;
 }
 .fase-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
+  opacity: 0.9;
 }
 .fase-badge {
   font-size: 0.72rem;
@@ -789,16 +812,17 @@ section { padding: 120px 0; background: transparent; }
 .principios-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  gap: 48px;
 }
 .principio { display: flex; flex-direction: column; gap: 8px; }
 .principio-num {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 600;
   color: var(--accent);
-  opacity: 0.75;
+  opacity: 0.65;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 .principio strong { font-size: 0.95rem; }
 .principio p { font-size: 0.85rem; color: var(--text-2); }
@@ -809,8 +833,8 @@ section { padding: 120px 0; background: transparent; }
 .ejemplos-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-bottom: 64px;
+  gap: 48px;
+  margin-bottom: 80px;
 }
 .ejemplo-card {
   background: rgba(255,255,255,0.015);
@@ -856,10 +880,10 @@ section { padding: 120px 0; background: transparent; }
 
 .ejemplo-num {
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 600;
   color: var(--accent);
-  opacity: 0.15;
+  opacity: 0.35;
   line-height: 1;
   letter-spacing: -0.02em;
 }
@@ -962,8 +986,8 @@ section { padding: 120px 0; background: transparent; }
 .team-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 64px;
+  gap: 80px;
+  margin-bottom: 80px;
 }
 .team-card {
   background: transparent;
