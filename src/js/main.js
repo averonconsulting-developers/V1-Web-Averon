@@ -84,7 +84,7 @@ const revealObserver = new IntersectionObserver((entries) => {
       const parent = entry.target.parentElement;
       const siblings = [...parent.querySelectorAll('.reveal:not(.visible)')];
       const idx = siblings.indexOf(entry.target);
-      const delay = Math.min(idx * 80, 400);
+      const delay = Math.min(idx * 100, 500);
 
       setTimeout(() => {
         entry.target.classList.add('visible');
@@ -94,11 +94,23 @@ const revealObserver = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -40px 0px'
+  threshold: 0.08,
+  rootMargin: '0px 0px -30px 0px'
 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── Stagger groups ─────────────────────────── */
+const groupObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      groupObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal-group').forEach(el => groupObserver.observe(el));
 
 /* ── FAQ accordion ──────────────────────────── */
 function toggleFaq(btn) {
